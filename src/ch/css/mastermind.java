@@ -8,18 +8,17 @@ public class mastermind {
         boolean start = true;
         int scanner = 1;
         try (Scanner sc = new Scanner(System.in)) {
-        while (start = true) {
-            start = false;
+            while (start = true) {
+                start = false;
 
-            System.out.println("___  ___          _                      _           _ \n" +
-                    "|  \\/  |         | |                    (_)         | |\n" +
-                    "| .  . | __ _ ___| |_ ___ _ __ _ __ ___  _ _ __   __| |\n" +
-                    "| |\\/| |/ _` / __| __/ _ \\ '__| '_ ` _ \\| | '_ \\ / _` |\n" +
-                    "| |  | | (_| \\__ \\ ||  __/ |  | | | | | | | | | | (_| |\n" +
-                    "\\_|  |_/\\__,_|___/\\__\\___|_|  |_| |_| |_|_|_| |_|\\__,_|\n" +
-                    "                                                       \n" +
-                    "                                                       ");
-
+                System.out.println("___  ___          _                      _           _ \n" +
+                        "|  \\/  |         | |                    (_)         | |\n" +
+                        "| .  . | __ _ ___| |_ ___ _ __ _ __ ___  _ _ __   __| |\n" +
+                        "| |\\/| |/ _` / __| __/ _ \\ '__| '_ ` _ \\| | '_ \\ / _` |\n" +
+                        "| |  | | (_| \\__ \\ ||  __/ |  | | | | | | | | | | (_| |\n" +
+                        "\\_|  |_/\\__,_|___/\\__\\___|_|  |_| |_| |_|_|_| |_|\\__,_|\n" +
+                        "                                                       \n" +
+                        "                                                       ");
 
 
                 System.out.println("Wähle 1, um das Spiel zu starten.");
@@ -43,6 +42,7 @@ public class mastermind {
                     int tries = 12;
                     int a = 0;
 
+
                     //convert randomInt to a colour
                     int blue = 0;
                     int red = 1;
@@ -52,6 +52,7 @@ public class mastermind {
                     int white = 5;
                     int lila = 6;
                     int orange = 7;
+
 
                     String[] colours = {"", "", "", ""};
                     String[] coloursSmall = {"", "", "", ""};
@@ -112,29 +113,52 @@ public class mastermind {
                     System.out.println(colours[3]);
 
 
+                    int correctColoursPosition = 0;
+                    int correctColours = 0;
+                    int ab = 0;
+                    while (correctColoursPosition <= 3 && round <= 12) {
 
-                        int correctColoursPosition = 0;
-                        int correctColours = 0;
-                        int ab = 0;
-                        while (correctColoursPosition <= 3) {
+                        System.out.println(round + ". Runde");
+                        System.out.println("------------------------------");
 
-                            System.out.println(round + ". Runde");
-                            int b = 0;
-                            int c = 1;
-                            int d = 2;
-                            int e = 3;
+                        int b = 0;
+                        int c = 1;
+                        int d = 2;
+                        int e = 3;
 
 
-                            int colourNumber = 1;
-                            if (colourNumber == 4) {
-                                colourNumber -= 3;
-                            }
-                            int bc = 0;
-                            int cd = 0;
+                        int colourNumber = 1;
+                        if (colourNumber == 4) {
+                            colourNumber -= 3;
+                        }
+                        int bc = 0;
+                        int cd = 0;
+                        if (tries > 0) {
                             while (cd <= 0) {
                                 while (bc <= 3) {
-                                    System.out.println(colourNumber + " Farbe : ");
+                                    String[] validColours = {"Blau", "blau", "Rot", "rot", "Gelb", "gelb", "Grün", "grün", "Schwarz", "schwarz", "Weiss", "weiss", "Lila", "lila", "Orange", "orange"};
+                                    System.out.println(colourNumber + ". Farbe : ");
                                     colourInput[b] = sc.nextLine();
+                                    if (!colourInput[b].equals(validColours[0]) &&
+                                            !colourInput[b].equals(validColours[1]) &&
+                                            !colourInput[b].equals(validColours[2]) &&
+                                            !colourInput[b].equals(validColours[3]) &&
+                                            !colourInput[b].equals(validColours[4]) &&
+                                            !colourInput[b].equals(validColours[5]) &&
+                                            !colourInput[b].equals(validColours[6]) &&
+                                            !colourInput[b].equals(validColours[7]) &&
+                                            !colourInput[b].equals(validColours[8]) &&
+                                            !colourInput[b].equals(validColours[9]) &&
+                                            !colourInput[b].equals(validColours[10]) &&
+                                            !colourInput[b].equals(validColours[11]) &&
+                                            !colourInput[b].equals(validColours[12]) &&
+                                            !colourInput[b].equals(validColours[13]) &&
+                                            !colourInput[b].equals(validColours[14]) &&
+                                            !colourInput[b].equals(validColours[15])) {
+                                        System.out.println("Ungültige Eingabe!");
+                                        colourInput[b] = sc.nextLine();
+                                    }                                               
+
                                     colourNumber += 1;
 
 
@@ -223,9 +247,10 @@ public class mastermind {
 
                                 cd += 1;
                             }
-                            System.out.println("Richtig positionierte Farben: [" + correctColoursPosition + "]");
+
+                            System.out.println("Richtig positionierte Farben (rot) : [" + correctColoursPosition + "]");
                             System.out.println("------------------------------");
-                            System.out.println("Stimmende Farben: [" + correctColours + "]");
+                            System.out.println("Stimmende Farben (weiss) : [" + correctColours + "]");
                             System.out.println("------------------------------");
                             correctPositionColours[0] = false;
                             correctPositionColours[1] = false;
@@ -237,50 +262,32 @@ public class mastermind {
                             }
                             tries -= 1;
                             round += 1;
-
-
                         }
-                        if (correctColoursPosition == 4) {
-                            System.out.println(" _   _ _      _                   _ \n" +
-                                    "| | | (_)    | |                 | |\n" +
-                                    "| | | |_  ___| |_ ___  _ __ _   _| |\n" +
-                                    "| | | | |/ __| __/ _ \\| '__| | | | |\n" +
-                                    "\\ \\_/ / | (__| || (_) | |  | |_| |_|\n" +
-                                    " \\___/|_|\\___|\\__\\___/|_|   \\__, (_)\n" +
-                                    "                             __/ |  \n" +
-                                    "                            |___/   ");
-                            System.out.println("Herzlichen Glückwunsch, du hast das Spiel gewonnen. Willst du erneut spielen?");
-                            System.out.println("Wähle 1, um nochmal zu spielen");
-                            System.out.println("Wähle 2, um das Spiel zu beenden");
+                    }
 
 
+                    if (correctColoursPosition == 4) {
+                        System.out.println(" _   _ _      _                   _ \n" +
+                                "| | | (_)    | |                 | |\n" +
+                                "| | | |_  ___| |_ ___  _ __ _   _| |\n" +
+                                "| | | | |/ __| __/ _ \\| '__| | | | |\n" +
+                                "\\ \\_/ / | (__| || (_) | |  | |_| |_|\n" +
+                                " \\___/|_|\\___|\\__\\___/|_|   \\__, (_)\n" +
+                                "                             __/ |  \n" +
+                                "                            |___/   ");
+                        System.out.println("Herzlichen Glückwunsch, du hast das Spiel gewonnen. Willst du erneut spielen?");
+                        System.out.println("Wähle 1, um nochmal zu spielen");
+                        System.out.println("Wähle 2, um das Spiel zu beenden");
 
-                            String reset = sc.nextLine();
 
-                            if (reset.equals("1")) {
-                                System.out.println("Spielwiederholung");
-                                start = true;
+                        String reset = sc.nextLine();
 
-                            } else if (reset.equals("2")) {
+                        if (reset.equals("1")) {
+                            System.out.println("Spielwiederholung");
+                            start = true;
 
-                                System.out.println(" _____ _            _____          _ \n" +
-                                        "|_   _| |          |  ___|        | |\n" +
-                                        "  | | | |__   ___  | |__ _ __   __| |\n" +
-                                        "  | | | '_ \\ / _ \\ |  __| '_ \\ / _` |\n" +
-                                        "  | | | | | |  __/ | |__| | | | (_| |\n" +
-                                        "  \\_/ |_| |_|\\___| \\____/_| |_|\\__,_|\n" +
-                                        "                                     \n" +
-                                        "                                     ");
-                                System.out.println("Spiel beendet. \nVielen dank für deine Zeit.");
-                                System.exit(0);
-                            } else {
-                                System.out.println("Ungültige Eingabe!");
-                                System.exit(0);
-                            }
-                        } else if (tries == 0) {
-                            System.out.println("Du hast leider verloren!");
-                            System.out.println("Lösung: " + colours[0] + colours[1] + colours[2] + colours[3]);
-                            System.out.println("------------------------------");
+                        } else if (reset.equals("2")) {
+
                             System.out.println(" _____ _            _____          _ \n" +
                                     "|_   _| |          |  ___|        | |\n" +
                                     "  | | | |__   ___  | |__ _ __   __| |\n" +
@@ -295,12 +302,51 @@ public class mastermind {
                             System.out.println("Ungültige Eingabe!");
                             System.exit(0);
                         }
+                    } else if (tries == 0) {
+
+                        System.out.println("Du hast leider verloren!");
+                        System.out.println("Lösung: " + colours[0] + " " + colours[1] + " " + colours[2] + " " + colours[3]);
+                        System.out.println("------------------------------");
+                        System.out.println("______      __           _   _ \n" +
+                                "|  _  \\    / _|         | | | |\n" +
+                                "| | | |___| |_ ___  __ _| |_| |\n" +
+                                "| | | / _ \\  _/ _ \\/ _` | __| |\n" +
+                                "| |/ /  __/ ||  __/ (_| | |_|_|\n" +
+                                "|___/ \\___|_| \\___|\\__,_|\\__(_)\n" +
+                                "                               \n" +
+                                "                               ");
+
+                        System.out.println("Wähle 1, um nochmal zu spielen");
+                        System.out.println("Wähle 2, um das Spiel zu beenden");
+                        String reset2 = sc.nextLine();
+
+                        if (reset2.equals("1")) {
+                            System.out.println("Spielwiederholung");
+                            start = true;
+                        } else if (reset2.equals("2")) {
+
+                            System.out.println(" _____ _            _____          _ \n" +
+                                    "|_   _| |          |  ___|        | |\n" +
+                                    "  | | | |__   ___  | |__ _ __   __| |\n" +
+                                    "  | | | '_ \\ / _ \\ |  __| '_ \\ / _` |\n" +
+                                    "  | | | | | |  __/ | |__| | | | (_| |\n" +
+                                    "  \\_/ |_| |_|\\___| \\____/_| |_|\\__,_|\n" +
+                                    "                                     \n" +
+                                    "                                     ");
+                            System.out.println("Spiel beendet. \nVielen dank für deine Zeit.");
+                            System.exit(0);
+                        } else {
+                            System.out.println("Ungültige Eingabe!");
+                        }
                     }
+
                 }
             }
         }
-
     }
+}
+
+
 
 
 
