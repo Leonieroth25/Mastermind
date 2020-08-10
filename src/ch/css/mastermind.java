@@ -6,6 +6,8 @@ import java.util.Scanner;
 public class mastermind {
     public static void main(String[] args) {
         boolean start = true;
+        int scanner = 1;
+        try (Scanner sc = new Scanner(System.in)) {
         while (start = true) {
             start = false;
 
@@ -18,7 +20,7 @@ public class mastermind {
                     "                                                       \n" +
                     "                                                       ");
 
-            try (Scanner sc = new Scanner(System.in)) {
+
 
                 System.out.println("Wähle 1, um das Spiel zu starten.");
                 System.out.println("Wähle 2, um eine Anleitung zu sehen.");
@@ -27,12 +29,13 @@ public class mastermind {
                 if (choice1.equals("2")) {
                     System.out.println("------------------------------");
                     System.out.println("Es wird ein Farbcode mit vier Farben generiert, welchen du durch Raten heraus finden musst.\nEine Farbe kann auch mehrmals vorkommen. \nNach jeder geratenen Runde erfährst du bei wie vielen deiner Eingaben die Farbe und die Position stimmt \nund wie oft eine der geratenen Farben in der Kombination vorkommt.(an der falschen Position) \nDu startest, indem du vier der acht Farben in einer gewünschten Reihenfolge eingibst. \nDas Ziel ist es in wenigen Spielrunden die Farbkombination heraus zu finden. \nSchaffst du die Farbkombination zu finden in zwölf oder weniger Runden hast du gewonnen.");
-                    try (Scanner sc2 = new Scanner(System.in)) {
-                        System.out.println("------------------------------");
-                        System.out.println("Wähle 1, um das Spiel zu starten");
-                        choice2 = sc.nextLine();
-                    }
+
+                    System.out.println("------------------------------");
+                    System.out.println("Wähle 1, um das Spiel zu starten");
+                    choice2 = sc.nextLine();
+
                 }
+
                 if (choice1.equals("1") || choice2.equals("1")) {
                     System.out.println("Zur Auswahl stehen folgende Farben:\n[1] Blau\n[2] Rot\n[3] Gelb\n[4] Grün\n[5] Schwarz\n[6] Weiss\n[7] Lila\n[8] Orange\n------------------------------");
 
@@ -51,6 +54,7 @@ public class mastermind {
                     int orange = 7;
 
                     String[] colours = {"", "", "", ""};
+                    String[] coloursSmall = {"", "", "", ""};
                     boolean[] correctPositionColours = {false, false, false, false};
                     String[] colourInput = {"", "", "", ""};
 
@@ -65,28 +69,36 @@ public class mastermind {
 
                         if (randomInt == blue) {
                             //System.out.println("Blau");
-                            colours[a] = "1";
+                            colours[a] = "Blau";
+                            coloursSmall[a] = "blau";
                         } else if (randomInt == red) {
                             //System.out.println("Rot");
-                            colours[a] = "2";
+                            colours[a] = "Rot";
+                            coloursSmall[a] = "rot";
                         } else if (randomInt == yellow) {
                             //System.out.println("Gelb");
-                            colours[a] = "3";
+                            colours[a] = "Gelb";
+                            coloursSmall[a] = "gelb";
                         } else if (randomInt == green) {
                             //System.out.println("Grün");
-                            colours[a] = "4";
+                            colours[a] = "Grün";
+                            coloursSmall[a] = "grün";
                         } else if (randomInt == black) {
                             //System.out.println("Schwarz");
-                            colours[a] = "5";
+                            colours[a] = "Schwarz";
+                            coloursSmall[a] = "schwarz";
                         } else if (randomInt == white) {
                             //System.out.println("Weiss");
-                            colours[a] = "6";
+                            colours[a] = "Weiss";
+                            coloursSmall[a] = "weiss";
                         } else if (randomInt == lila) {
                             //System.out.println("Lila");
-                            colours[a] = "7";
+                            colours[a] = "Lila";
+                            coloursSmall[a] = "lila";
                         } else if (randomInt == orange) {
                             //System.out.println("Orange");
-                            colours[a] = "8";
+                            colours[a] = "Orange";
+                            coloursSmall[a] = "orange";
                         }
 
                         a += 1;
@@ -100,7 +112,7 @@ public class mastermind {
                     System.out.println(colours[3]);
 
 
-                    try (Scanner scanner = new Scanner(System.in)) {
+
                         int correctColoursPosition = 0;
                         int correctColours = 0;
                         int ab = 0;
@@ -121,13 +133,13 @@ public class mastermind {
                             int cd = 0;
                             while (cd <= 0) {
                                 while (bc <= 3) {
-                                    System.out.println("Colour " + colourNumber + ": ");
-                                    colourInput[b] = scanner.nextLine();
+                                    System.out.println(colourNumber + " Farbe : ");
+                                    colourInput[b] = sc.nextLine();
                                     colourNumber += 1;
 
 
                                     if (correctPositionColours[b] == false) {         //at beginning: b=0
-                                        if (colourInput[b].equals(colours[b])) {
+                                        if (colourInput[b].equals(colours[b]) || colourInput[b].equals(coloursSmall[b])) {
                                             if (b == 4) {
                                                 b -= 4;
                                             }
@@ -176,26 +188,26 @@ public class mastermind {
                                     }
                                     if (correctPositionColours[b] == false) {
 
-                                        if (colourInput[b].equals(colours[b])) {
+                                        if (colourInput[b].equals(colours[b]) || colourInput[b].equals(coloursSmall[b])) {
                                             correctColours += 1;
                                             correctPositionColours[b] = true;
 
                                         }
                                     }
                                     if (correctPositionColours[c] == false) {
-                                        if (colourInput[b].equals(colours[c])) {
+                                        if (colourInput[b].equals(colours[c]) || colourInput[b].equals(coloursSmall[c])) {
                                             correctColours += 1;
                                             correctPositionColours[c] = true;
                                         }
                                     }
                                     if (correctPositionColours[d] == false) {
-                                        if (colourInput[b].equals(colours[d])) {
+                                        if (colourInput[b].equals(colours[d]) || colourInput[b].equals(coloursSmall[d])) {
                                             correctColours += 1;
                                             correctPositionColours[d] = true;
                                         }
                                     }
                                     if (correctPositionColours[e] == false) {
-                                        if (colourInput[b].equals(colours[e])) {
+                                        if (colourInput[b].equals(colours[e]) || colourInput[b].equals(coloursSmall[e])) {
                                             correctColours += 1;
                                             correctPositionColours[e] = true;
                                         }
@@ -242,9 +254,8 @@ public class mastermind {
                             System.out.println("Wähle 2, um das Spiel zu beenden");
 
 
-                            Scanner Scanner = new Scanner(System.in);
 
-                            String reset = Scanner.nextLine();
+                            String reset = sc.nextLine();
 
                             if (reset.equals("1")) {
                                 System.out.println("Spielwiederholung");
@@ -286,11 +297,14 @@ public class mastermind {
                         }
                     }
                 }
-
             }
         }
+
     }
-}
+
+
+
+
 
 
 
