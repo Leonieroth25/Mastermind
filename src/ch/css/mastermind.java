@@ -4,7 +4,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class mastermind {
+
+
     public static void main(String[] args) {
+        String[] colourInput = {"", "", "", ""};
         boolean start = true;
         int scanner = 1;
         try (Scanner sc = new Scanner(System.in)) {
@@ -36,11 +39,11 @@ public class mastermind {
                 }
 
                 if (choice1.equals("1") || choice2.equals("1")) {
-                    System.out.println("Zur Auswahl stehen folgende Farben:\n[1] Blau\n[2] Rot\n[3] Gelb\n[4] Grün\n[5] Schwarz\n[6] Weiss\n[7] Lila\n[8] Orange\n------------------------------");
+
 
                     int round = 1;
                     int tries = 12;
-                    int a = 0;
+                    int generatedColoursIndex = 0;
 
 
                     //convert randomInt to a colour
@@ -55,216 +58,176 @@ public class mastermind {
 
 
                     String[] colours = {"", "", "", ""};
-                    String[] coloursSmall = {"", "", "", ""};
                     boolean[] correctPositionColours = {false, false, false, false};
-                    String[] colourInput = {"", "", "", ""};
 
 
-                    while (a < 4) {
+
+                    while (generatedColoursIndex < 4) {
 
                         //generate 4 random numbers
                         Random random = new Random();
-                        int upperbound = 7;
+                        int upperbound = 8;
                         int randomInt = random.nextInt(upperbound);
 
 
                         if (randomInt == blue) {
-                            //System.out.println("Blau");
-                            colours[a] = "Blau";
-                            coloursSmall[a] = "blau";
+                            colours[generatedColoursIndex] = "blau";
                         } else if (randomInt == red) {
-                            //System.out.println("Rot");
-                            colours[a] = "Rot";
-                            coloursSmall[a] = "rot";
+                            colours[generatedColoursIndex] = "rot";
                         } else if (randomInt == yellow) {
-                            //System.out.println("Gelb");
-                            colours[a] = "Gelb";
-                            coloursSmall[a] = "gelb";
+                            colours[generatedColoursIndex] = "gelb";
                         } else if (randomInt == green) {
-                            //System.out.println("Grün");
-                            colours[a] = "Grün";
-                            coloursSmall[a] = "grün";
+                            colours[generatedColoursIndex] = "grün";
                         } else if (randomInt == black) {
-                            //System.out.println("Schwarz");
-                            colours[a] = "Schwarz";
-                            coloursSmall[a] = "schwarz";
+                            colours[generatedColoursIndex] = "schwarz";
                         } else if (randomInt == white) {
-                            //System.out.println("Weiss");
-                            colours[a] = "Weiss";
-                            coloursSmall[a] = "weiss";
+                            colours[generatedColoursIndex] = "weiss";
                         } else if (randomInt == lila) {
-                            //System.out.println("Lila");
-                            colours[a] = "Lila";
-                            coloursSmall[a] = "lila";
+                            colours[generatedColoursIndex] = "lila";
                         } else if (randomInt == orange) {
-                            //System.out.println("Orange");
-                            colours[a] = "Orange";
-                            coloursSmall[a] = "orange";
+                            colours[generatedColoursIndex] = "orange";
                         }
 
-                        a += 1;
+                        generatedColoursIndex += 1;
 
 
                     }
-                    a = 0;
-                    System.out.println(colours[0]);
-                    System.out.println(colours[1]);
-                    System.out.println(colours[2]);
-                    System.out.println(colours[3]);
+                    //System.out.println(colours[0]);
+                    //System.out.println(colours[1]);
+                    //System.out.println(colours[2]);
+                    //System.out.println(colours[3]);
 
 
                     int correctColoursPosition = 0;
                     int correctColours = 0;
-                    int ab = 0;
                     while (correctColoursPosition <= 3 && round <= 12) {
 
+                        System.out.println("------------------------------");
+                        System.out.println("Zur Auswahl stehen folgende Farben:\n[1] Blau\n[2] Rot\n[3] Gelb\n[4] Grün\n[5] Schwarz\n[6] Weiss\n[7] Lila\n[8] Orange\n------------------------------");
                         System.out.println(round + ". Runde");
                         System.out.println("------------------------------");
 
-                        int b = 0;
-                        int c = 1;
-                        int d = 2;
-                        int e = 3;
-
+                        int inputNumber = 0;
 
                         int colourNumber = 1;
                         if (colourNumber == 4) {
                             colourNumber -= 3;
                         }
-                        int bc = 0;
-                        int cd = 0;
-                        if (tries > 0) {
-                            while (cd <= 0) {
-                                while (bc <= 3) {
-                                    String[] validColours = {"Blau", "blau", "Rot", "rot", "Gelb", "gelb", "Grün", "grün", "Schwarz", "schwarz", "Weiss", "weiss", "Lila", "lila", "Orange", "orange"};
-                                    System.out.println(colourNumber + ". Farbe : ");
-                                    colourInput[b] = sc.nextLine();
-                                    if (!colourInput[b].equals(validColours[0]) &&
-                                            !colourInput[b].equals(validColours[1]) &&
-                                            !colourInput[b].equals(validColours[2]) &&
-                                            !colourInput[b].equals(validColours[3]) &&
-                                            !colourInput[b].equals(validColours[4]) &&
-                                            !colourInput[b].equals(validColours[5]) &&
-                                            !colourInput[b].equals(validColours[6]) &&
-                                            !colourInput[b].equals(validColours[7]) &&
-                                            !colourInput[b].equals(validColours[8]) &&
-                                            !colourInput[b].equals(validColours[9]) &&
-                                            !colourInput[b].equals(validColours[10]) &&
-                                            !colourInput[b].equals(validColours[11]) &&
-                                            !colourInput[b].equals(validColours[12]) &&
-                                            !colourInput[b].equals(validColours[13]) &&
-                                            !colourInput[b].equals(validColours[14]) &&
-                                            !colourInput[b].equals(validColours[15])) {
-                                        System.out.println("Ungültige Eingabe!");
-                                        colourInput[b] = sc.nextLine();
-                                    }                                               
+                        int correctionIndex = 0;
+                        int colorInputIndex = 0;
+                        if (round < 13) {
+                            inputNumber = 0;
+                            while (colorInputIndex <= 3) {
+                                if (inputNumber >= 4) {
 
-                                    colourNumber += 1;
+                                }
+                                String[] validColours = {"Blau", "blau", "Rot", "rot", "Gelb", "gelb", "Grün", "grün", "Schwarz", "schwarz", "Weiss", "weiss", "Lila", "lila", "Orange", "orange"};
+                                System.out.println(colourNumber + ". Farbe : ");
+                                colourInput[inputNumber] = sc.nextLine().toLowerCase();
 
+                                while (!colourInput[inputNumber].equals(validColours[0]) &&
+                                        !colourInput[inputNumber].equals(validColours[1]) &
+                                                !colourInput[inputNumber].equals(validColours[2]) &&
+                                        !colourInput[inputNumber].equals(validColours[3]) &&
+                                        !colourInput[inputNumber].equals(validColours[4]) &&
+                                        !colourInput[inputNumber].equals(validColours[5]) &&
+                                        !colourInput[inputNumber].equals(validColours[6]) &&
+                                        !colourInput[inputNumber].equals(validColours[7]) &&
+                                        !colourInput[inputNumber].equals(validColours[8]) &&
+                                        !colourInput[inputNumber].equals(validColours[9]) &&
+                                        !colourInput[inputNumber].equals(validColours[10]) &&
+                                        !colourInput[inputNumber].equals(validColours[11]) &&
+                                        !colourInput[inputNumber].equals(validColours[12]) &&
+                                        !colourInput[inputNumber].equals(validColours[13]) &&
+                                        !colourInput[inputNumber].equals(validColours[14]) &&
+                                        !colourInput[inputNumber].equals(validColours[15])) {
+                                    System.out.println("Ungültige Eingabe!");
+                                    colourInput[inputNumber] = sc.nextLine().toLowerCase();
+                                }
+                                inputNumber += 1;
+                                colorInputIndex += 1;
+                                colourNumber += 1;
+                            }
+                            String[] colourInputClone = colourInput.clone();
+                            while (correctionIndex <= 3) {
+                                int correctPositionIndex = 0;
+                                while (correctPositionIndex <= 3) {
+                                    if (inputNumber >= 4) {
+                                        inputNumber = 0;
+                                    }
+                                    if (correctPositionColours[inputNumber] == false) {
+                                        if (colourInputClone[inputNumber].equals(colours[inputNumber])) {
 
-                                    if (correctPositionColours[b] == false) {         //at beginning: b=0
-                                        if (colourInput[b].equals(colours[b]) || colourInput[b].equals(coloursSmall[b])) {
-                                            if (b == 4) {
-                                                b -= 4;
-                                            }
-                                            if (c == 4) {
-                                                c -= 4;
-                                            }
-                                            if (d == 4) {
-                                                d -= 4;
-                                            }
-                                            if (e == 4) {
-                                                e -= 4;
-                                            }
                                             correctColoursPosition += 1;
-                                            ab += 1;
-                                            correctPositionColours[b] = true;
-
-
-                                        }
-                                        b += 1;
-                                        c += 1;
-                                        d += 1;
-                                        e += 1;
-
-                                    }
-                                    bc += 1;
-                                }
-                                b = 0;
-                                c = 1;
-                                d = 2;
-                                e = 3;
-
-
-                                int de = 0;
-                                while (de <= 3) {
-                                    if (b == 4) {
-                                        b -= 4;
-                                    }
-                                    if (c == 4) {
-                                        c -= 4;
-                                    }
-                                    if (d == 4) {
-                                        d -= 4;
-                                    }
-                                    if (e == 4) {
-                                        e -= 4;
-                                    }
-                                    if (correctPositionColours[b] == false) {
-
-                                        if (colourInput[b].equals(colours[b]) || colourInput[b].equals(coloursSmall[b])) {
-                                            correctColours += 1;
-                                            correctPositionColours[b] = true;
+                                            correctPositionColours[inputNumber] = true;
+                                            colourInputClone[inputNumber] = "empty";
 
                                         }
                                     }
-                                    if (correctPositionColours[c] == false) {
-                                        if (colourInput[b].equals(colours[c]) || colourInput[b].equals(coloursSmall[c])) {
-                                            correctColours += 1;
-                                            correctPositionColours[c] = true;
-                                        }
-                                    }
-                                    if (correctPositionColours[d] == false) {
-                                        if (colourInput[b].equals(colours[d]) || colourInput[b].equals(coloursSmall[d])) {
-                                            correctColours += 1;
-                                            correctPositionColours[d] = true;
-                                        }
-                                    }
-                                    if (correctPositionColours[e] == false) {
-                                        if (colourInput[b].equals(colours[e]) || colourInput[b].equals(coloursSmall[e])) {
-                                            correctColours += 1;
-                                            correctPositionColours[e] = true;
-                                        }
-                                    }
-
-                                    b += 1;
-                                    c += 1;
-                                    d += 1;
-                                    e += 1;
-                                    de += 1;
+                                    inputNumber += 1;
+                                    correctPositionIndex += 1;
 
                                 }
 
-                                cd += 1;
-                            }
+                                if (inputNumber >= 4) {
+                                    inputNumber = 0;
+                                }
+                                if (correctPositionColours[0] == false) {
 
-                            System.out.println("Richtig positionierte Farben (rot) : [" + correctColoursPosition + "]");
-                            System.out.println("------------------------------");
-                            System.out.println("Stimmende Farben (weiss) : [" + correctColours + "]");
-                            System.out.println("------------------------------");
-                            correctPositionColours[0] = false;
-                            correctPositionColours[1] = false;
-                            correctPositionColours[2] = false;
-                            correctPositionColours[3] = false;
-                            if (correctColoursPosition <= 3) {
-                                correctColours = 0;
-                                correctColoursPosition = 0;
+                                    if (colourInputClone[inputNumber].equals(colours[0])) {
+                                        correctColours += 1;
+                                        correctPositionColours[0] = true;
+                                        colourInputClone[inputNumber] = "empty";
+
+                                    }
+                                }
+                                if (correctPositionColours[1] == false) {
+                                    if (colourInputClone[inputNumber].equals(colours[1])) {
+                                        correctColours += 1;
+                                        correctPositionColours[1] = true;
+                                        colourInputClone[inputNumber] = "empty";
+                                    }
+                                }
+                                if (correctPositionColours[2] == false) {
+                                    if (colourInputClone[inputNumber].equals(colours[2])) {
+                                        correctColours += 1;
+                                        correctPositionColours[2] = true;
+                                        colourInputClone[inputNumber] = "empty";
+                                    }
+                                }
+                                if (correctPositionColours[3] == false) {
+                                    if (colourInputClone[inputNumber].equals(colours[3])) {
+                                        correctColours += 1;
+                                        correctPositionColours[3] = true;
+                                        colourInputClone[inputNumber] = "empty";
+                                    }
+                                }
+                                correctionIndex += 1;
+
+                                inputNumber += 1;
+
+
                             }
-                            tries -= 1;
-                            round += 1;
+                            inputNumber = 0;
+
+
                         }
-                    }
 
+
+                        System.out.println("Richtig positionierte Farben (rot) : [" + correctColoursPosition + "]");
+                        System.out.println("------------------------------");
+                        System.out.println("Stimmende Farben (weiss) : [" + correctColours + "]");
+                        System.out.println("------------------------------");
+                        correctPositionColours[0] = false;
+                        correctPositionColours[1] = false;
+                        correctPositionColours[2] = false;
+                        correctPositionColours[3] = false;
+                        if (correctColoursPosition <= 3) {
+                            correctColours = 0;
+                            correctColoursPosition = 0;
+                        }
+                        round += 1;
+                    }
 
                     if (correctColoursPosition == 4) {
                         System.out.println(" _   _ _      _                   _ \n" +
@@ -302,10 +265,10 @@ public class mastermind {
                             System.out.println("Ungültige Eingabe!");
                             System.exit(0);
                         }
-                    } else if (tries == 0) {
+                    } else if (round >= 12) {
 
                         System.out.println("Du hast leider verloren!");
-                        System.out.println("Lösung: " + colours[0] + " " + colours[1] + " " + colours[2] + " " + colours[3]);
+                        System.out.println("Lösung: " + colours[0] + ", " + colours[1] + ", " + colours[2] + ", " + colours[3]);
                         System.out.println("------------------------------");
                         System.out.println("______      __           _   _ \n" +
                                 "|  _  \\    / _|         | | | |\n" +
@@ -345,6 +308,8 @@ public class mastermind {
         }
     }
 }
+
+
 
 
 
