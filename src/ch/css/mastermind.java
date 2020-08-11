@@ -30,7 +30,7 @@ public class mastermind {
                 String choice2 = "";
                 if (choice1.equals("2")) {
                     System.out.println("------------------------------");
-                    System.out.println("Es wird ein Farbcode mit vier Farben generiert, welchen du durch Raten heraus finden musst.\nEine Farbe kann auch mehrmals vorkommen. \nNach jeder geratenen Runde erfährst du bei wie vielen deiner Eingaben die Farbe und die Position stimmt \nund wie oft eine der geratenen Farben in der Kombination vorkommt.(an der falschen Position) \nDu startest, indem du vier der acht Farben in einer gewünschten Reihenfolge eingibst. \nDas Ziel ist es in wenigen Spielrunden die Farbkombination heraus zu finden. \nSchaffst du die Farbkombination zu finden in zwölf oder weniger Runden hast du gewonnen.");
+                    System.out.println("Es wird ein Farbcode mit vier Farben generiert, welchen du durch Raten herausfinden musst.\nEine Farbe kann auch mehrmals vorkommen. \nNach jeder geratenen Runde erfährst du bei wie vielen deiner Eingaben die Farbe und die Position stimmt \nund wie oft eine der geratenen Farben in der Kombination vorkommt.(an der falschen Position) \nDu startest, indem du vier der acht Farben in einer gewünschten Reihenfolge eingibst. \nDas Ziel ist es in wenigen Spielrunden die Farbkombination heraus zu finden. \nSchaffst du die Farbkombination in zwölf oder weniger Runden zu finden, so hast du das Spiel gewonnen.");
 
                     System.out.println("------------------------------");
                     System.out.println("Wähle 1, um das Spiel zu starten");
