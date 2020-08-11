@@ -61,7 +61,6 @@ public class mastermind {
                     boolean[] correctPositionColours = {false, false, false, false};
 
 
-
                     while (generatedColoursIndex < 4) {
 
                         //generate 4 random numbers
